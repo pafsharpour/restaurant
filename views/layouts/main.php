@@ -12,6 +12,17 @@ use yii\bootstrap5\NavBar;
 
 AppAsset::register($this);
 
+//sesion for error or success message
+$session = Yii::$app->session;
+if ($session->isActive)
+    $session->open();
+?>
+
+<h2><?php echo $session->get('result'); ?></h2>
+<?php
+$session->set('result', '');
+
+
 $this->registerCsrfMetaTags();
 $this->registerMetaTag(['charset' => Yii::$app->charset], 'charset');
 $this->registerMetaTag(['name' => 'viewport', 'content' => 'width=device-width, initial-scale=1, shrink-to-fit=no']);
