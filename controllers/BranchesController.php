@@ -66,7 +66,7 @@ class BranchesController extends Controller
 
     public function actionDelete($id)
     {
-        $branch =  Branches::findOne($id)?? null;
+        $branch =  Branches::findOne($id) ?? null;
         if ($branch != null && $branch->order_count == 0) {
             $branch->delete();
             Yii::$app->session->set('result', 'successfull!');

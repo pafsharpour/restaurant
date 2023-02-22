@@ -29,8 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            'id',
+            ['class' => 'yii\grid\SerialColumn',],
             [
                 'attribute' => 'name',
                 'value' => function ($user) {
@@ -38,15 +37,17 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'label' => 'Name'
             ],
-            
+
 
             'address',
-           'order_count',
+            'order_count',
             'max_order_count',
 
 
             [
-                'class' => ActionColumn::className(),
+                //'class' => ActionColumn::className(),
+                'class' => ActionColumn::className(), 'template' => '{delete} {update}',
+
                 'urlCreator' => function ($action, Branches $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                 }
