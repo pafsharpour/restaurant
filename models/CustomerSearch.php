@@ -25,7 +25,7 @@ class CustomerSearch extends Customer
         $query->andFilterWhere(['like', 'customer.email', $this->email]);
         $query->andFilterWhere(['like', 'customer.nationalCode', $this->nationalCode]);
         $query->andFilterWhere(['like', 'customer.address', $this->address]);
-        $query->andFilterWhere(['user.id' => $this->id]);
+        $query->andFilterWhere(['customer.id' => $this->id]);
         $provider = new ActiveDataProvider([
             'query' => $query,
             'sort'=> [
