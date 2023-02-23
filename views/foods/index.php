@@ -1,14 +1,14 @@
 <?php
 
 use app\widgets\Alert;
-use app\models\FoodType;
+use app\models\Foods;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use yii\grid\GridView;
 
 
-$this->title = 'Food type list';
+$this->title = 'Food list';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?= Alert::widget() ?>
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('create', ['/foodtype/insert'], ['class' => 'mx-2 btn btn-primary']) ?>
+        <?= Html::a('create', ['/foods/insert'], ['class' => 'mx-2 btn btn-primary']) ?>
 
     </p>
 
@@ -30,16 +30,17 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn',],
-            
+            'name',
             'type',
-            'count',
-
+            'branch',
+            'orderable',
+            'ordered',
 
             [
                 //'class' => ActionColumn::className(),
                 'class' => ActionColumn::className(), 'template' => '{delete} {update}',
 
-                'urlCreator' => function ($action, FoodType $model, $key, $index, $column) {
+                'urlCreator' => function ($action, Foods $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);
                 }
             ],

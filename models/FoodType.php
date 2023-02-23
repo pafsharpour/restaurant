@@ -37,8 +37,10 @@ class FoodType extends ActiveRecord
 
 
     //home
-    public function getCar()
+    public function getFood()
     {
-        //return $this->hasMany(Car::className(), ['id' => 'car_id'])->viaTable('UserCar', ['user_id' => 'id']);
+       // return $this->hasMany(Foods::className(), ['type' => 'type'])->viaTable('UserCar', ['user_id' => 'id']);
+       // return $this->hasMany(User::className(), ['id' => 'user_id'])->viaTable('UserCar', ['car_id' => 'id']);
+
     }
 }
