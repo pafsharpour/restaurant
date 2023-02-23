@@ -44,7 +44,7 @@ class Branches extends ActiveRecord
                 return (Branches::find()
                     ->where(['=', 'name', $this->name])->one()) != null
                     && (Branches::find()->where(['=', 'name', $this->name])->one())->id != $this->id;
-            }, 'message'=>'dfdf'],
+            }],
         ];
     }
 
