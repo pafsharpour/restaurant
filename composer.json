@@ -20,7 +20,10 @@
         "yiisoft/yii2-symfonymailer": "~2.0.3",
         "larapack/dd": "1.*",
         "kartik-v/yii2-widget-select2": "@dev",
-        "kartik-v/yii2-widget-sidenav": "@dev"
+        "kartik-v/yii2-widget-sidenav": "@dev",
+        "kartik-v/yii2-widget-depdrop": "dev-master"
+,"richardfan1126/yii2-js-register":"*"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

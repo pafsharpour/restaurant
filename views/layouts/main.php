@@ -29,11 +29,14 @@ $session->set('result', '');
 /** @var yii\web\View $this */
 $this->title = 'My Yii Application';
      ?>
-     <div class='col-2 m-5'>
+	 <div class="container mx-auto">
+	 <div class="row">
+
+	 <div class="col-3 mt-5 ">
      <?php
 echo SideNav::widget([
 	'type' => SideNav::TYPE_DEFAULT,
-	'heading' => 'Options',
+	'heading' => 'dashboard',
 	'items' => [
 		[
 			'url' => '/customer',
@@ -55,15 +58,15 @@ echo SideNav::widget([
 			'icon' => 'question-sign',
 			'items' => [
 				['label' => 'foods', 'icon'=>'info-sign', 'url'=>'/foods'],
-				['label' => 'food type', 'icon'=>'phone', 'url'=>'foodtype'],
+				['label' => 'food type', 'icon'=>'phone', 'url'=>'/foodtype'],
 			],
 		],
 	],
 ]);
 
 ?>
-</div>
-<div class='col-10 m-5'>
+    </div>
+    <div class="col-9 mt-0">
 
 <?php
 
@@ -95,7 +98,9 @@ $this->registerLinkTag(['rel' => 'icon', 'type' => 'image/x-icon', 'href' => Yii
         <?php endif ?>
         <?= Alert::widget() ?>
         <?= $content ?>
-    </div>
+		</div>
+  </div>
+</div>
 </main>
 
 

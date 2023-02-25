@@ -49,15 +49,47 @@ class Foods extends ActiveRecord
         ];
     }
 
-
+   
    
     //home
     public function getBranches()
     {
         return $this->hasOne(Branches::class, ['name' => 'branch']);
     }
-    public function getFoodType()
+   
+
+
+
+    public static function getFoods($branchName)
     {
-        return $this->hasOne(Foodtype::class, ['type' => 'type']);
+        $out = [];
+        $data = Foods::find()
+                ->where(['branch' => $branchName])
+                ->asArray()
+                ->all();
+        foreach ($data as $dat) {
+            $out[] = ['id' => $dat['id'], 'name' => $dat['name']];
+        }
+        return $output = [
+            'output' => $out,
+            'selected' => ''
+        ];
     }
-}
+
+    public static function getFoodType ($branchName)
+    {
+        $out = [];
+        $data = Foods::find()
+                ->where(['branch' => $branchName])
+                ->asArray()
+                ->all();
+                foreach ($data as $dat) {
+                    $out[] = ['id' => $dat['id'], 'type' => $dat['type']];
+                }
+                return $output = [
+                    'output' => $out,
+                    'selected' => ''
+                ];
+            }
+        
+    }
