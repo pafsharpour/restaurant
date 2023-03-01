@@ -32,14 +32,6 @@ class Orders extends ActiveRecord
 
         return [
             [['branch', 'foodType','foods','customer'],'required'],
-
-            //['order_count', 'compare', 'compareValue' => $this->max_order_count, 'operator' => '<='],
-
-            /* ['name', 'unique', 'when' => function ($model) {
-                return (Branches::find()
-                    ->where(['=', 'name', $this->name])->one()) != null
-                    && (Branches::find()->where(['=', 'name', $this->name])->one())->id != $this->id;
-            }], */
         ];
     }
 
@@ -57,8 +49,12 @@ class Orders extends ActiveRecord
 
    
     //home
-    public function getCar()
+    public function getFoods()
     {
-        //return $this->hasMany(Car::className(), ['id' => 'car_id'])->viaTable('UserCar', ['user_id' => 'id']);
+        return $this->hasOne(Foods::class, ['name' => 'foods']);
+    }
+    public function getType()
+    {
+        return $this->hasOne(Foods::class, ['type' => 'foodType']);
     }
 }

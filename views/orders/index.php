@@ -19,6 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('create', ['/orders/insert'], ['class' => 'mx-2 btn btn-primary']) ?>
+        <?= Html::a('create2', ['/orders/insert2'], ['class' => 'mx-2 btn btn-primary']) ?>
 
     </p>
 
@@ -42,12 +43,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'orderNumber',
             'customer',
             'branch',
-
-
-
             [
                 //'class' => ActionColumn::className(),
-                'class' => ActionColumn::className(), 'template' => '{delete} {update}',
+                'class' => ActionColumn::className(), 'template' => '{delete} {view}',
 
                 'urlCreator' => function ($action, Orders $model, $key, $index, $column) {
                     return Url::toRoute([$action, 'id' => $model->id]);

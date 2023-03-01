@@ -2,11 +2,7 @@
 
 namespace app\models;
 
-use yii\base\Model;
-use yii\data\ActiveDataProvider;
 use yii\db\ActiveRecord;
-use  yii\web\Session;
-use app\models\DeleteFailException;
 //home
 
 
@@ -28,7 +24,6 @@ class Foods extends ActiveRecord
 
     public function rules(): array
     {
-        //  dd($this->order_count);
 
         return [
             [['ordered', 'orderable'], 'integer'],
@@ -39,13 +34,6 @@ class Foods extends ActiveRecord
             ['orderable', 'compare', 'compareValue' => $this->ordered,
             'operator' => '>=','on' => self::SCENARIO_UPDATE],
 
-            //['order_count', 'compare', 'compareValue' => $this->max_order_count, 'operator' => '<='],
-
-   /*          ['name', 'unique', 'when' => function ($model) {
-                return (Branches::find()
-                    ->where(['=', 'name', $this->name])->one()) != null
-                    && (Branches::find()->where(['=', 'name', $this->name])->one())->id != $this->id;
-            }], */
         ];
     }
 
@@ -65,6 +53,7 @@ class Foods extends ActiveRecord
         $out = [];
         $data = Foods::find()
                 ->where(['branch' => $branchName])
+                ->andWhere('orderable > ordered')
                 ->asArray()
                 ->all();
         foreach ($data as $dat) {
@@ -90,6 +79,12 @@ class Foods extends ActiveRecord
                     'output' => $out,
                     'selected' => ''
                 ];
+            }
+
+
+            public function getOrders()
+            {
+                return $this->hasMany(Orders::class, ['foods' => 'name']);
             }
         
     }

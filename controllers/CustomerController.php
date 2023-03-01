@@ -2,11 +2,14 @@
 
 namespace app\controllers;
 
+
 use Yii;
 use yii\web\Controller;
 use app\models\Customer;
+use app\models\Orders;
 use app\models\CustomerSearch;
 use yii\data\ActiveDataProvider;
+
 
 
 
@@ -66,17 +69,22 @@ class CustomerController extends Controller
         }
     }
 
-    /*
     public function actionDelete($id)
     {
-        $user =  User::findOne($id) ?? null;
+        $user =  Customer::findOne($id) ?? null;
         if ($user != null) {
-            $user->delete();
-            Yii::$app->session->set('result', 'successfull!');
-            return $this->response->redirect(['user/index']);
+            $count = Orders::find()->where(['customer'=>$user->name])->count();
+            if($count == 0) 
+            {
+                $user->delete();
+                Yii::$app->session->set('result', 'successfull!');
+                return $this->response->redirect(['customer/index']);
+            }
         } else {
             Yii::$app->session->set('result', 'failed!');
             return $this->actionIndex();
         }
-    } */
+        Yii::$app->session->set('result', 'failed!');
+        return $this->actionIndex();
+    } 
 }
